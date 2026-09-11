@@ -17,13 +17,13 @@ export default function Team() {
       <div className="grid gap-6 sm:grid-cols-2">
         {team.map((member) => (
           <div key={member.slug} className="card flex flex-col overflow-hidden">
-            <div className="relative aspect-[4/3] w-full overflow-hidden bg-background-elevated">
+            <div className="relative aspect-[3/4] w-full overflow-hidden bg-background-elevated">
               <Image
                 src={member.photo}
                 alt={member.name}
                 fill
                 sizes="(min-width: 640px) 50vw, 100vw"
-                className="object-cover object-top"
+                className="object-cover object-[center_15%]"
                 priority
               />
             </div>
