@@ -1,16 +1,23 @@
+"use client";
+
 import { Trophy } from "lucide-react";
 import { achievements, techStack } from "@/lib/data";
+import { content } from "@/lib/content";
+import { useLanguage } from "@/lib/language-context";
 
 export default function Achievements() {
+  const { lang } = useLanguage();
+  const t = content[lang];
+
   return (
     <section className="section-shell py-20 sm:py-28">
       <div className="grid gap-12 md:grid-cols-2 md:gap-16">
         <div>
           <h2 className="text-sm font-medium uppercase tracking-widest text-accent">
-            Track Record
+            {t.achievements.kicker}
           </h2>
           <p className="mt-4 text-2xl font-semibold tracking-tight sm:text-3xl">
-            Diasah lewat kompetisi developer.
+            {t.achievements.title}
           </p>
           <div className="mt-8 flex flex-col gap-4">
             {achievements.map((a) => (
@@ -34,15 +41,15 @@ export default function Achievements() {
 
         <div>
           <h2 className="text-sm font-medium uppercase tracking-widest text-accent">
-            Tech Stack
+            {t.tech.kicker}
           </h2>
           <p className="mt-4 text-2xl font-semibold tracking-tight sm:text-3xl">
-            Tools yang kami pakai sehari-hari.
+            {t.tech.title}
           </p>
           <div className="mt-8 flex flex-wrap gap-2">
-            {techStack.map((t) => (
-              <span key={t} className="badge">
-                {t}
+            {techStack.map((tech) => (
+              <span key={tech} className="badge">
+                {tech}
               </span>
             ))}
           </div>

@@ -3,16 +3,20 @@
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
 import { company } from "@/lib/data";
-
-const links = [
-  { href: "#about", label: "About" },
-  { href: "#team", label: "Team" },
-  { href: "#projects", label: "Projects" },
-  { href: "#contact", label: "Contact" },
-];
+import { content } from "@/lib/content";
+import { useLanguage } from "@/lib/language-context";
 
 export default function Nav() {
   const [open, setOpen] = useState(false);
+  const { lang, setLang } = useLanguage();
+  const t = content[lang].nav;
+
+  const links = [
+    { href: "#about", label: t.about },
+    { href: "#team", label: t.team },
+    { href: "#projects", label: t.projects },
+    { href: "#contact", label: t.contact },
+  ];
 
   return (
     <header className="sticky top-0 z-50 border-b border-surface-border/80 bg-background/80 backdrop-blur-md">
@@ -34,20 +38,24 @@ export default function Nav() {
           ))}
         </ul>
 
-        <a
-          href="#contact"
-          className="hidden rounded-full bg-foreground px-4 py-2 text-sm font-medium text-background transition-opacity hover:opacity-90 md:inline-block"
-        >
-          Let&apos;s talk
-        </a>
+        <div className="flex items-center gap-3">
+          <LanguageSwitcher lang={lang} setLang={setLang} />
 
-        <button
-          aria-label="Toggle menu"
-          className="text-foreground md:hidden"
-          onClick={() => setOpen((v) => !v)}
-        >
-          {open ? <X size={22} /> : <Menu size={22} />}
-        </button>
+          <a
+            href="#contact"
+            className="hidden rounded-full bg-foreground px-4 py-2 text-sm font-medium text-background transition-opacity hover:opacity-90 md:inline-block"
+          >
+            {t.cta}
+          </a>
+
+          <button
+            aria-label="Toggle menu"
+            className="text-foreground md:hidden"
+            onClick={() => setOpen((v) => !v)}
+          >
+            {open ? <X size={22} /> : <Menu size={22} />}
+          </button>
+        </div>
       </nav>
 
       {open && (
@@ -70,12 +78,44 @@ export default function Nav() {
                 onClick={() => setOpen(false)}
                 className="mt-1 block rounded-lg bg-foreground px-2 py-2.5 text-center font-medium text-background"
               >
-                Let&apos;s talk
+                {t.cta}
               </a>
             </li>
           </ul>
         </div>
       )}
     </header>
+  );
+}
+
+function LanguageSwitcher({
+  lang,
+  setLang,
+}: {
+  lang: "id" | "en";
+  setLang: (lang: "id" | "en") => void;
+}) {
+  return (
+    <div
+      role="group"
+      aria-label="Language"
+      className="flex items-center rounded-full border border-surface-border bg-background-elevated p-0.5 text-xs font-medium"
+    >
+      {(["id", "en"] as const).map((code) => (
+        <button
+          key={code}
+          type="button"
+          onClick={() => setLang(code)}
+          aria-pressed={lang === code}
+          className={`rounded-full px-2.5 py-1 transition-colors ${
+            lang === code
+              ? "bg-foreground text-background"
+              : "text-muted hover:text-foreground"
+          }`}
+        >
+          {code.toUpperCase()}
+        </button>
+      ))}
+    </div>
   );
 }

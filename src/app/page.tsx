@@ -6,10 +6,11 @@ import Projects from "@/components/Projects";
 import Achievements from "@/components/Achievements";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
+import { LanguageProvider } from "@/lib/language-context";
 
 export default function Home() {
   return (
-    <>
+    <LanguageProvider>
       <Nav />
       <main className="flex-1">
         <Hero />
@@ -20,6 +21,6 @@ export default function Home() {
         <Contact />
       </main>
       <Footer />
-    </>
+    </LanguageProvider>
   );
 }
