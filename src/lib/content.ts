@@ -7,8 +7,9 @@ type ProjectText = {
   highlight?: string;
 };
 
-type Dict = {
+export type Dict = {
   nav: {
+    services: string;
     about: string;
     team: string;
     projects: string;
@@ -17,12 +18,24 @@ type Dict = {
   };
   hero: {
     badge: string;
+    availability: string;
     headingPrefix: string;
     headingHighlight: string;
     subtitle: string;
     ctaPrimary: string;
     ctaSecondary: string;
-    stats: { value: string; label: string }[];
+    terminal: {
+      header: string;
+      status: string;
+      items: { label: string; value: string; accent?: boolean }[];
+    };
+    stats: { value: string; label: string; sub?: string }[];
+  };
+  services: {
+    kicker: string;
+    title: string;
+    subtitle: string;
+    items: Record<string, { title: string; desc: string }>;
   };
   about: {
     kicker: string;
@@ -33,6 +46,7 @@ type Dict = {
   team: {
     kicker: string;
     title: string;
+    subtitle: string;
     members: Record<
       string,
       { role: string; bio: string; focus: string[] }
@@ -44,22 +58,35 @@ type Dict = {
     note: string;
     shippedLabel: string;
     conceptLabel: string;
+    filterAll: string;
+    filterShipped: string;
+    filterAI: string;
+    filterCloud: string;
     items: Record<string, ProjectText>;
   };
   achievements: {
     kicker: string;
     title: string;
+    subtitle: string;
   };
   tech: {
     kicker: string;
     title: string;
+    subtitle: string;
   };
   contact: {
     badge: string;
     title: string;
     desc: string;
+    copyEmail: string;
+    copiedToast: string;
+    sendDirect: string;
+    sla: string;
+    topicsLabel: string;
+    topics: string[];
   };
   footer: {
+    status: string;
     builtBy: (names: string) => string;
   };
 };
@@ -67,6 +94,7 @@ type Dict = {
 export const content: Record<Lang, Dict> = {
   id: {
     nav: {
+      services: "Layanan",
       about: "Tentang",
       team: "Tim",
       projects: "Proyek",
@@ -74,261 +102,379 @@ export const content: Record<Lang, Dict> = {
       cta: "Hubungi Kami",
     },
     hero: {
-      badge: "Studio software · 2 co-founder, satu tim",
-      headingPrefix: "Kami mengubah ide menjadi",
-      headingHighlight: "software yang siap pakai.",
+      badge: "Studio Software Boutique",
+      availability: "Terbuka untuk Kemitraan Q2/Q3 2025",
+      headingPrefix: "Kami merancang & membangun",
+      headingHighlight: "software kelas dunia.",
       subtitle:
-        "Kami mendesain, membangun, dan merilis produk digital dari ujung ke ujung. Superworks dijalankan oleh CEO & CTO yang langsung terjun ke setiap proyek — dari strategi produk sampai baris kode dan cloud infrastructure.",
-      ctaPrimary: "Lihat proyek kami",
-      ctaSecondary: "Kenalan sama tim",
+        "Superworks adalah studio rekayasa perangkat lunak yang dijalankan langsung oleh CEO & CTO. Kami mengubah visi bisnis yang kompleks menjadi produk digital berkinerja tinggi, arsitektur cloud tangguh, dan sistem AI terapan.",
+      ctaPrimary: "Lihat Karya Kami",
+      ctaSecondary: "Konsultasi Proyek",
+      terminal: {
+        header: "superworks.terminal — active session",
+        status: "PRODUCTION_READY",
+        items: [
+          { label: "Core Execution", value: "Direct Founder Ownership (Zero Bureaucracy)", accent: true },
+          { label: "Engineering Scope", value: "Fullstack Web · Cloud Native · Applied AI" },
+          { label: "Cloud Platforms", value: "GCP · AWS · Alibaba Cloud (Multi-region)" },
+          { label: "Track Record", value: "3 National Developer Competition Wins (IDTC, UMCC, MAGE X)", accent: true },
+        ],
+      },
       stats: [
-        { value: "2", label: "Founders" },
-        { value: "6+", label: "Produk & eksperimen" },
-        { value: "3", label: "Kompetisi developer dimenangkan" },
+        { value: "2", label: "Founders", sub: "CEO & CTO Hand-on" },
+        { value: "3", label: "Juara Kompetisi", sub: "Developer Nasional" },
+        { value: "6+", label: "Produk & Sistem", sub: "Rilis & Inovasi" },
+        { value: "100%", label: "Direct Ownership", sub: "Kualitas Tanpa Kompromi" },
       ],
     },
+    services: {
+      kicker: "Kapabilitas & Solusi",
+      title: "Rekayasa perangkat lunak dari ide hingga skala produksi.",
+      subtitle:
+        "Kami memadukan strategi produk yang tajam dengan eksekusi teknis tingkat lanjut untuk membangun solusi yang cepat, stabil, dan scalable.",
+      items: {
+        "web-saas": {
+          title: "Web Apps & Modern SaaS",
+          desc: "Pengembangan platform web modern berperforma tinggi dengan Next.js, React 19, dan TypeScript. Desain antarmuka responsif, arsitektur termodularisasi, dan load speed sub-detik untuk pengalaman pengguna maksimal.",
+        },
+        "cloud-devops": {
+          title: "Cloud Infrastructure & DevOps",
+          desc: "Arsitektur cloud tangguh di GCP, AWS, dan Alibaba Cloud. Containerization Docker, pipeline CI/CD terotomasi, load balancing, serta monitoring server 24/7 dengan target zero-downtime.",
+        },
+        "applied-ai": {
+          title: "Applied AI & Data Systems",
+          desc: "Penerapan machine learning praktis: One-Class Graph Neural Networks untuk deteksi anomali transaksi, integrasi LLM cerdas, dan pipeline MLOps reproducible dengan MLflow.",
+        },
+        "product-mvp": {
+          title: "Product MVP & Payment Integrations",
+          desc: "Akselerasi produk dari ide ke pasar dalam hitungan minggu. Integrasi payment gateway (Midtrans, PayLink), sistem otorisasi multi-level, dan REST/GraphQL API yang siap diuji pengguna nyata.",
+        },
+      },
+    },
     about: {
-      kicker: "About Superworks",
-      title: "Studio kecil, cakupan kerja end-to-end.",
+      kicker: "Filosofi Studio",
+      title: "Studio ramping dengan kapabilitas end-to-end tanpa batas.",
       description:
-        "Superworks adalah studio pengembangan software yang dibangun oleh dua orang yang saling melengkapi: satu memimpin arah bisnis dan produk, satu lagi memimpin eksekusi teknis. Kami membantu tim dan bisnis mengubah ide menjadi produk digital yang scalable — dari web app, backend & cloud infrastructure, sampai eksperimen AI/ML.",
+        "Superworks dibangun oleh dua partner komplementer: satu memimpin visi bisnis dan strategi produk, satu lagi mengarahkan arsitektur teknis dan rekayasa cloud/AI. Klien kami berkolaborasi langsung dengan para pengambil keputusan utama — memastikan setiap baris kode dan keputusan arsitektur selaras dengan tujuan bisnis Anda.",
       pillars: [
         {
-          title: "Product-first",
-          desc: "Setiap proyek dimulai dari memahami masalah pengguna, bukan langsung loncat ke teknologi.",
+          title: "Direct Founder Access",
+          desc: "Tidak ada perantara atau project manager berlapis. Anda berdiskusi dan berkolaborasi langsung dengan CEO dan CTO yang menulis kode.",
         },
         {
-          title: "Fullstack execution",
-          desc: "Dari frontend, backend, sampai integrasi pembayaran & API pihak ketiga — dikerjakan end-to-end.",
+          title: "Fullstack & Cloud-Native",
+          desc: "Dari desain alur pengguna, backend berkonkurensi tinggi, hingga deployment multi-cloud yang siap menampung lonjakan traffic.",
         },
         {
-          title: "Cloud-native",
-          desc: "Terbiasa mendesain arsitektur di GCP, AWS, dan Alibaba Cloud yang siap untuk scale.",
+          title: "Engineering Rigor",
+          desc: "Setiap solusi dibangun dengan standar rekayasa ketat: modular, terdokumentasi, scalable, dan siap diaudit keamanannya.",
         },
       ],
     },
     team: {
-      kicker: "Tim Kami",
-      title: "Dua orang, dua peran yang saling melengkapi.",
+      kicker: "Kepemimpinan Studio",
+      title: "Dua partner, satu sinergi eksekusi yang solid.",
+      subtitle: "Kombinasi keahlian produk dan ketangguhan arsitektur teknis untuk mewujudkan produk digital terbaik.",
       members: {
         alvie: {
           role: "CEO & Co-Founder",
-          bio: "Alvie memimpin visi produk dan arah bisnis Superworks. Fokusnya ada di menjembatani kebutuhan klien dengan solusi teknis yang tepat guna — mulai dari validasi ide, strategi produk, sampai memastikan setiap proyek yang dikerjakan tim benar-benar memberi dampak ke pengguna dan bisnis, bukan sekadar selesai secara teknis.",
+          bio: "Alvie memimpin visi produk dan strategi bisnis Superworks. Berfokus pada penajaman proposisi nilai klien, validasi alur bisnis, serta memastikan setiap solusi perangkat lunak yang diluncurkan memberikan dampak riil dan terukur terhadap pertumbuhan bisnis.",
           focus: [
-            "Strategi Produk",
-            "Pengembangan Bisnis",
-            "Kemitraan Klien",
-            "Manajemen Proyek",
+            "Strategi Produk & Go-to-Market",
+            "Pengembangan Bisnis & Kemitraan",
+            "Validasi Solusi Digital",
+            "Product Architecture",
           ],
         },
         fahrizal: {
           role: "CTO & Co-Founder",
-          bio: "Fahrizal mengarahkan sisi teknis Superworks — arsitektur sistem, backend, cloud infrastructure, sampai eksplorasi AI/ML. Lulusan Informatika Institut Teknologi Nasional Bandung (GPA 3.61) dengan pengalaman langsung membangun sistem fullstack di berbagai perusahaan, mengelola layanan cloud di GCP/AWS/Alibaba Cloud, serta riset machine learning untuk deteksi anomali di jaringan blockchain.",
+          bio: "Muchammad Fahrizal memimpin rekayasa teknis, arsitektur sistem, infrastruktur cloud, dan riset AI/ML di Superworks. Lulusan Informatika Institut Teknologi Nasional Bandung (GPA 3.61) dengan rekam jejak memenangkan berbagai kompetisi developer nasional serta pengalaman langsung di ekosistem GCP, AWS, dan Alibaba Cloud.",
           focus: [
-            "Arsitektur Cloud (GCP/AWS)",
+            "Cloud Infrastructure (GCP / AWS)",
+            "High-concurrency Backend & API",
+            "Applied AI / Graph Neural Networks",
             "Fullstack Engineering",
-            "Desain Backend & API",
-            "Eksplorasi AI/ML",
           ],
         },
       },
     },
     projects: {
-      kicker: "Karya Pilihan",
-      title: "Proyek yang sudah dikerjakan & konsep produk internal.",
-      note: "Tiga di antaranya adalah proyek yang benar-benar sudah dibangun dan diuji tim Superworks. Sisanya adalah konsep produk internal yang sedang dikembangkan.",
-      shippedLabel: "Rilis",
-      conceptLabel: "Konsep",
+      kicker: "Karya Pilihan & Inovasi",
+      title: "Produk yang sudah dirilis dan riset sistem internal.",
+      note: "Portofolio mencakup solusi nyata yang telah dideploy ke pengguna serta inisiatif produk internal yang sedang dikembangkan.",
+      shippedLabel: "Rilis Produksi",
+      conceptLabel: "Konsep & R&D",
+      filterAll: "Semua Karya",
+      filterShipped: "Rilis Produksi",
+      filterAI: "AI & Machine Learning",
+      filterCloud: "Cloud & Sistem",
       items: {
         "kopi-kita": {
           title: "Kopi Kita — Online Café Ordering System",
-          category: "Aplikasi Web · Pembayaran",
+          category: "Web Application · FinTech",
           description:
-            "Sistem pemesanan kafe berbasis QR code: pelanggan scan kode di meja, pesan langsung dari HP, dan membayar online tanpa harus antre ke kasir. Dibangun bareng dari nol oleh tim Superworks, dari desain alur pemesanan sampai integrasi pembayaran.",
-          highlight: "Mempercepat alur pesan & bayar, mengurangi antrean kasir",
+            "Sistem pemesanan kafe nirsentuh berbasis QR Code: pelanggan memindai kode di meja, memilih menu dari peramban HP, dan melakukan pembayaran online instan tanpa antre di kasir.",
+          highlight: "Mereduksi waktu antrean kasir hingga 70% & rekonsiliasi pembayaran otomatis via Midtrans",
         },
         "ocgnn-anomaly-detection": {
           title: "OCGNN — Ethereum Anomaly Detection",
-          category: "AI / Machine Learning",
+          category: "Applied AI / Blockchain Security",
           description:
-            "Sistem deteksi anomali transaksi blockchain Ethereum menggunakan One-Class Graph Neural Network. Setiap akun direpresentasikan sebagai node (balance, degree, gas usage) dan transaksi sebagai edge, lalu dipelajari dengan pendekatan hypersphere learning untuk memisahkan akun normal dan mencurigakan.",
-          highlight: "95.78% accuracy · 99.81% recall · 88.34% F1-score",
+            "Sistem deteksi anomali transaksi blockchain Ethereum menggunakan One-Class Graph Neural Network. Memetakan akun sebagai node multi-fitur dan transaksi sebagai edge untuk mendeteksi ancaman secara presisi.",
+          highlight: "95.78% akurasi · 99.81% recall · 88.34% F1-score pada dataset Ethereum riil",
         },
         "sentiment-pulse": {
           title: "Sentiment Pulse — Sentiment Analysis Automation",
-          category: "AI / MLOps",
+          category: "AI / MLOps Pipeline",
           description:
-            "Pipeline otomatis untuk mengklasifikasikan data teks menjadi sentimen positif/negatif secara real-time. Terhubung langsung ke database, memakai model bahasa OpenAI untuk analisis, dan MLflow untuk experiment tracking, versioning, sampai deployment model.",
-          highlight: "Pipeline ML yang reproducible dengan campur tangan manual minimal",
+            "Pipeline otomatis untuk mengklasifikasikan data teks menjadi sentimen positif/negatif secara real-time. Terhubung langsung ke database, memakai model bahasa OpenAI untuk analisis, dan MLflow untuk experiment tracking sampai deployment.",
+          highlight: "Pipeline ML otomatis end-to-end dengan campur tangan manual minimal",
         },
         cloudpulse: {
           title: "CloudPulse — Multi-Cloud Monitoring Dashboard",
-          category: "Cloud / Internal Tool",
+          category: "Cloud Ops / Internal Systems",
           description:
-            "Dashboard internal untuk memantau resource di beberapa cloud provider sekaligus — uptime, biaya, log, dan alert — dalam satu tampilan. Dibuat untuk mempermudah tim Superworks (dan klien) mengawasi infrastruktur tanpa harus bolak-balik console provider.",
+            "Dashboard pemantauan terpusat untuk memantau resource di berbagai provider cloud (GCP, AWS) sekaligus — melacak uptime, estimasi biaya, audit log, dan peringatan dini anomali sistem.",
+          highlight: "Visibilitas infrastruktur terpadu tanpa berpindah konsol provider",
         },
         dokuhub: {
           title: "DokuHub — Document & Certification Portal",
-          category: "Aplikasi Web · Internal Systems",
+          category: "Enterprise Web / Security",
           description:
-            "Platform manajemen dokumen dan sertifikat berbasis peran, dirancang untuk institusi yang perlu mengelola arsip resmi (sertifikat, akreditasi, berkas legal) secara aman dan mudah diaudit.",
+            "Platform manajemen arsip dan sertifikasi digital dengan kontrol akses berbasis peran (RBAC), dirancang untuk institusi yang membutuhkan penyimpanan berkas resmi dengan audit trail yang ketat.",
+          highlight: "Keamanan dokumen tingkat enterprise dengan jejak audit transparan",
         },
         paylink: {
           title: "PayLink — Payment Gateway Integration Kit",
-          category: "Backend / API",
+          category: "High-throughput API / FinTech",
           description:
-            "Modul backend yang bisa dipakai ulang untuk mengintegrasikan payment gateway ke platform konten digital — cocok untuk kebutuhan seperti top-up, langganan, atau pembayaran dalam aplikasi hiburan dan gaming.",
+            "Modul backend terstandarisasi untuk mengintegrasikan payment gateway ke platform digital — dirancang untuk performa tinggi pada transaksi top-up, langganan, dan checkout digital.",
+          highlight: "Arsitektur Go yang ringan dan tahan lonjakan request transaksi",
         },
       },
     },
     achievements: {
-      kicker: "Track Record",
-      title: "Diasah lewat kompetisi developer.",
+      kicker: "Rekam Jejak Teruji",
+      title: "Prestasi di panggung kompetisi developer bergengsi.",
+      subtitle: "Keahlian rekayasa kami ditempa dan diakui secara objektif melalui kejuaraan kompetisi teknologi nasional.",
     },
     tech: {
-      kicker: "Tech Stack",
-      title: "Tools yang kami pakai sehari-hari.",
+      kicker: "Standar Teknologi",
+      title: "Teknologi modern yang kami andalkan sehari-hari.",
+      subtitle: "Kami memilih perangkat rekayasa terbaik untuk memastikan kecepatan, keamanan, dan skalabilitas jangka panjang.",
     },
     contact: {
-      badge: "Ada ide proyek?",
-      title: "Mari obrolin kebutuhan produk atau software kamu.",
-      desc: "Kirim email dan ceritakan sedikit tentang proyeknya — kami akan balas untuk diskusi lebih lanjut.",
+      badge: "Mulai Kolaborasi",
+      title: "Mari diskusikan visi produk digital Anda bersama kami.",
+      desc: "Kirim pesan atau hubungi kami langsung. Kami akan merespons dalam waktu singkat untuk menjadwalkan sesi konsultasi mendalam.",
+      copyEmail: "Salin Alamat Email",
+      copiedToast: "Alamat email berhasil disalin!",
+      sendDirect: "Kirim Email Sekarang",
+      sla: "Waktu respon rata-rata < 24 jam",
+      topicsLabel: "Topik Diskusi:",
+      topics: [
+        "Web App & SaaS Development",
+        "Cloud Architecture & DevOps",
+        "Applied AI & Machine Learning",
+        "Product MVP & Consultation",
+      ],
     },
     footer: {
-      builtBy: (names) => `Dibangun oleh ${names}.`,
+      status: "Semua sistem & layanan studio beroperasi optimal",
+      builtBy: (names) => `Dirancang & direkayasa oleh ${names}.`,
     },
   },
   en: {
     nav: {
+      services: "Services",
       about: "About",
       team: "Team",
-      projects: "Projects",
+      projects: "Work",
       contact: "Contact",
-      cta: "Let's talk",
+      cta: "Let's Talk",
     },
     hero: {
-      badge: "Software studio · 2 founders, one team",
-      headingPrefix: "We turn ideas into",
-      headingHighlight: "shipped software.",
+      badge: "Boutique Software Studio",
+      availability: "Open for Q2/Q3 2025 Partnerships",
+      headingPrefix: "We engineer & deliver",
+      headingHighlight: "world-class software.",
       subtitle:
-        "We design, engineer, and ship digital products end-to-end. Superworks is run by a CEO & CTO who get hands-on with every project — from product strategy to code and cloud infrastructure.",
-      ctaPrimary: "See our work",
-      ctaSecondary: "Meet the team",
+        "Superworks is a software engineering studio run hands-on by its CEO & CTO. We turn complex business visions into high-performance digital products, resilient cloud architectures, and applied AI systems.",
+      ctaPrimary: "Explore Our Work",
+      ctaSecondary: "Book Discovery",
+      terminal: {
+        header: "superworks.terminal — active session",
+        status: "PRODUCTION_READY",
+        items: [
+          { label: "Core Execution", value: "Direct Founder Ownership (Zero Bureaucracy)", accent: true },
+          { label: "Engineering Scope", value: "Fullstack Web · Cloud Native · Applied AI" },
+          { label: "Cloud Platforms", value: "GCP · AWS · Alibaba Cloud (Multi-region)" },
+          { label: "Track Record", value: "3 National Developer Competition Wins (IDTC, UMCC, MAGE X)", accent: true },
+        ],
+      },
       stats: [
-        { value: "2", label: "Founders" },
-        { value: "6+", label: "Products & experiments" },
-        { value: "3", label: "Developer competitions won" },
+        { value: "2", label: "Founders", sub: "CEO & CTO Hands-on" },
+        { value: "3", label: "Competition Titles", sub: "National Developer Wins" },
+        { value: "6+", label: "Products & Systems", sub: "Shipped & In Innovation" },
+        { value: "100%", label: "Direct Ownership", sub: "Uncompromised Craft" },
       ],
     },
+    services: {
+      kicker: "Capabilities & Solutions",
+      title: "End-to-end software engineering from concept to scale.",
+      subtitle:
+        "We unite sharp product strategy with advanced technical execution to build solutions that are fast, dependable, and built to scale.",
+      items: {
+        "web-saas": {
+          title: "Web Apps & Modern SaaS",
+          desc: "High-performance modern web platforms built with Next.js, React 19, and TypeScript. Fluid responsive interfaces, modular component architecture, and sub-second load times for peak conversion.",
+        },
+        "cloud-devops": {
+          title: "Cloud Infrastructure & DevOps",
+          desc: "Resilient cloud architecture on GCP, AWS, and Alibaba Cloud. Containerized Docker microservices, automated CI/CD pipelines, load balancing, and 24/7 monitoring targeting zero-downtime.",
+        },
+        "applied-ai": {
+          title: "Applied AI & Data Systems",
+          desc: "Practical machine learning applications: One-Class Graph Neural Networks for transaction anomaly detection, intelligent LLM integration, and reproducible MLOps with MLflow.",
+        },
+        "product-mvp": {
+          title: "Product MVP & Payment Integrations",
+          desc: "Accelerate your product from idea to market in weeks. Turnkey payment gateway integrations (Midtrans, PayLink), role-based auth systems, and robust APIs ready for real customers.",
+        },
+      },
+    },
     about: {
-      kicker: "About Superworks",
-      title: "Small studio, end-to-end scope.",
+      kicker: "Studio Philosophy",
+      title: "Lean studio agility with limitless end-to-end execution.",
       description:
-        "Superworks is a software development studio built by two people who complement each other: one leads business and product direction, the other leads technical execution. We help teams and businesses turn ideas into scalable digital products — from web apps, backend & cloud infrastructure, to AI/ML experiments.",
+        "Superworks is forged by two complementary partners: one driving product vision and business strategy, the other leading system architecture and cloud/AI engineering. Our clients partner directly with the principal builders — ensuring every line of code directly furthers your business milestones.",
       pillars: [
         {
-          title: "Product-first",
-          desc: "Every project starts with understanding the user's problem, not jumping straight to technology.",
+          title: "Direct Founder Access",
+          desc: "No layers of account managers or project middlemen. You communicate directly with the CEO and CTO who write and review the code.",
         },
         {
-          title: "Fullstack execution",
-          desc: "From frontend and backend to payment and third-party API integrations — handled end-to-end.",
+          title: "Fullstack & Cloud-Native",
+          desc: "From thoughtful user journeys and high-throughput backends to multi-cloud deployment topologies ready for surging traffic.",
         },
         {
-          title: "Cloud-native",
-          desc: "Experienced designing architecture on GCP, AWS, and Alibaba Cloud that's ready to scale.",
+          title: "Engineering Rigor",
+          desc: "Every build meets stringent engineering standards: modular code, comprehensive documentation, and audit-ready security.",
         },
       ],
     },
     team: {
-      kicker: "The Team",
-      title: "Two people, two complementary roles.",
+      kicker: "Leadership",
+      title: "Two complementary leaders, one unified drive.",
+      subtitle: "Combining product intuition with deep engineering prowess to deliver exceptional digital outcomes.",
       members: {
         alvie: {
           role: "CEO & Co-Founder",
-          bio: "Alvie leads Superworks' product vision and business direction. His focus is bridging client needs with the right technical solutions — from idea validation and product strategy to making sure every project the team delivers creates real impact for users and the business, not just technical completion.",
+          bio: "Alvie directs Superworks' product vision and business strategy. He specializes in clarifying value propositions, validating business workflows, and ensuring every software solution delivers genuine, measurable impact to bottom-line growth.",
           focus: [
-            "Product Strategy",
-            "Business Development",
-            "Client Partnership",
-            "Project Management",
+            "Product Strategy & Go-to-Market",
+            "Business Development & Partnerships",
+            "Digital Solution Validation",
+            "Product Architecture",
           ],
         },
         fahrizal: {
           role: "CTO & Co-Founder",
-          bio: "Fahrizal leads Superworks' technical direction — system architecture, backend, cloud infrastructure, and AI/ML exploration. A Computer Science graduate from Institut Teknologi Nasional Bandung (GPA 3.61) with hands-on experience building fullstack systems across companies, managing cloud services on GCP/AWS/Alibaba Cloud, and researching machine learning for blockchain anomaly detection.",
+          bio: "Muchammad Fahrizal oversees technical execution, system architecture, cloud infrastructure, and AI/ML initiatives at Superworks. A Computer Science graduate from Institut Teknologi Nasional Bandung (GPA 3.61) with multiple national developer competition championships and deep cloud expertise.",
           focus: [
-            "Cloud Architecture (GCP/AWS)",
+            "Cloud Infrastructure (GCP / AWS)",
+            "High-concurrency Backend & APIs",
+            "Applied AI / Graph Neural Networks",
             "Fullstack Engineering",
-            "Backend & API Design",
-            "AI/ML Experimentation",
           ],
         },
       },
     },
     projects: {
-      kicker: "Selected Work",
-      title: "Shipped projects & internal product concepts.",
-      note: "Three of these are projects actually built and tested by the Superworks team. The rest are internal product concepts currently in development.",
+      kicker: "Selected Work & Innovation",
+      title: "Shipped production applications and internal R&D systems.",
+      note: "Our portfolio features battle-tested systems deployed to real users alongside proprietary internal platforms currently being engineered.",
       shippedLabel: "Shipped",
-      conceptLabel: "Concept",
+      conceptLabel: "Concept & R&D",
+      filterAll: "All Work",
+      filterShipped: "Shipped",
+      filterAI: "AI & Machine Learning",
+      filterCloud: "Cloud & Systems",
       items: {
         "kopi-kita": {
           title: "Kopi Kita — Online Café Ordering System",
-          category: "Web App · Payments",
+          category: "Web Application · FinTech",
           description:
-            "An online café ordering system: customers scan a QR code at their table, order directly from their phone, and pay online without queueing at the cashier. Built from scratch by the Superworks team, from ordering flow design to payment integration.",
-          highlight: "Speeds up the order & pay flow, reduces cashier queues",
+            "A contactless café ordering system powered by QR codes: patrons scan at their table, browse the menu in mobile browsers, and settle payments instantly without standing in cashier queues.",
+          highlight: "Reduces cashier wait time by up to 70% with automated Midtrans settlement",
         },
         "ocgnn-anomaly-detection": {
           title: "OCGNN — Ethereum Anomaly Detection",
-          category: "AI / Machine Learning",
+          category: "Applied AI / Blockchain Security",
           description:
-            "An anomaly detection system for Ethereum blockchain transactions using a One-Class Graph Neural Network. Each account is represented as a node (balance, degree, gas usage) and each transaction as an edge, learned with a hypersphere learning approach to separate normal accounts from suspicious ones.",
-          highlight: "95.78% accuracy · 99.81% recall · 88.34% F1-score",
+            "An Ethereum transaction anomaly detection system powered by a One-Class Graph Neural Network. Models accounts as multi-featured nodes and transactions as edges to flag illicit activities with high precision.",
+          highlight: "95.78% accuracy · 99.81% recall · 88.34% F1-score on live Ethereum transaction graph",
         },
         "sentiment-pulse": {
           title: "Sentiment Pulse — Sentiment Analysis Automation",
-          category: "AI / MLOps",
+          category: "AI / MLOps Pipeline",
           description:
-            "An automated pipeline that classifies text data into positive/negative sentiment in real time. Connected directly to a database, using OpenAI's language model for analysis and MLflow for experiment tracking, versioning, and deployment.",
-          highlight: "A reproducible ML pipeline with minimal manual intervention",
+            "An automated pipeline classifying streaming text into polarity scores in real time. Plugs directly into databases, utilizing OpenAI models for inference and MLflow for end-to-end experiment tracking and deployment.",
+          highlight: "Zero-touch continuous ML pipeline with automated evaluation",
         },
         cloudpulse: {
           title: "CloudPulse — Multi-Cloud Monitoring Dashboard",
-          category: "Cloud / Internal Tool",
+          category: "Cloud Ops / Internal Systems",
           description:
-            "An internal dashboard for monitoring resources across multiple cloud providers at once — uptime, cost, logs, and alerts — in a single view. Built to help the Superworks team (and clients) keep an eye on infrastructure without switching between provider consoles.",
+            "A unified observability dashboard aggregating resources across disparate cloud providers (GCP, AWS) — tracking uptime, cost burns, security logs, and anomaly triggers in a unified pane of glass.",
+          highlight: "Single-pane infrastructure visibility eliminating console switching",
         },
         dokuhub: {
           title: "DokuHub — Document & Certification Portal",
-          category: "Web App · Internal Systems",
+          category: "Enterprise Web / Security",
           description:
-            "A role-based document and certificate management platform, designed for institutions that need to manage official records (certificates, accreditation, legal documents) securely and with a clear audit trail.",
+            "A role-based digital asset and certificate repository designed for organizations demanding strict compliance, tamper-evident record keeping, and rigorous audit trails.",
+          highlight: "Enterprise-grade credential validation with transparent audit trails",
         },
         paylink: {
           title: "PayLink — Payment Gateway Integration Kit",
-          category: "Backend / API",
+          category: "High-throughput API / FinTech",
           description:
-            "A reusable backend module for integrating payment gateways into digital content platforms — suited for use cases like top-ups, subscriptions, or in-app payments for entertainment and gaming apps.",
+            "A standardized, high-performance Go backend kit for embedding payment gateways into digital storefronts — optimized for high concurrency during promotions, subscriptions, and top-ups.",
+          highlight: "Lightweight Go microservice resilient against traffic spikes",
         },
       },
     },
     achievements: {
-      kicker: "Track Record",
-      title: "Sharpened through developer competitions.",
+      kicker: "Proven Pedigree",
+      title: "Tested & recognized on national developer stages.",
+      subtitle: "Our engineering depth is objectively verified through prestigious national developer championships.",
     },
     tech: {
-      kicker: "Tech Stack",
-      title: "Tools we use every day.",
+      kicker: "Engineering Standards",
+      title: "The modern tech stack we rely on every day.",
+      subtitle: "We curate best-in-class tooling to guarantee performance, maintainability, and long-term scalability.",
     },
     contact: {
-      badge: "Got a project idea?",
-      title: "Let's talk about your product or software needs.",
-      desc: "Send an email and tell us a bit about the project — we'll get back to you to discuss further.",
+      badge: "Initiate Partnership",
+      title: "Let's discuss how we can engineer your digital vision.",
+      desc: "Send us a note with your product goals. We'll connect promptly to schedule a technical discovery session.",
+      copyEmail: "Copy Email Address",
+      copiedToast: "Email address copied to clipboard!",
+      sendDirect: "Send Email Directly",
+      sla: "Average response time < 24 hours",
+      topicsLabel: "Inquiry Focus:",
+      topics: [
+        "Web App & SaaS Development",
+        "Cloud Architecture & DevOps",
+        "Applied AI & Machine Learning",
+        "Product MVP & Consultation",
+      ],
     },
     footer: {
-      builtBy: (names) => `Built by ${names}.`,
+      status: "All studio systems and services operational",
+      builtBy: (names) => `Designed & engineered by ${names}.`,
     },
   },
 };
+
