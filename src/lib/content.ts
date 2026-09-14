@@ -188,7 +188,7 @@ export const content: Record<Lang, Dict> = {
         },
         fahrizal: {
           role: "CTO & Co-Founder",
-          bio: "Muchammad Fahrizal memimpin rekayasa teknis, arsitektur sistem, infrastruktur cloud, dan riset AI/ML di Superworks. Lulusan Informatika Institut Teknologi Nasional Bandung (GPA 3.61) dengan rekam jejak memenangkan berbagai kompetisi developer nasional serta pengalaman langsung di ekosistem GCP, AWS, dan Alibaba Cloud.",
+          bio: "Muchammad Fahrizal memimpin rekayasa teknis, arsitektur sistem, infrastruktur cloud, dan riset AI/ML di Superworks. Lulusan Informatika Institut Teknologi Nasional Bandung dengan rekam jejak memenangkan berbagai kompetisi developer nasional serta pengalaman langsung di ekosistem GCP, AWS, dan Alibaba Cloud.",
           focus: [
             "Cloud Infrastructure (GCP / AWS)",
             "High-concurrency Backend & API",
@@ -380,7 +380,7 @@ export const content: Record<Lang, Dict> = {
         },
         fahrizal: {
           role: "CTO & Co-Founder",
-          bio: "Muchammad Fahrizal oversees technical execution, system architecture, cloud infrastructure, and AI/ML initiatives at Superworks. A Computer Science graduate from Institut Teknologi Nasional Bandung (GPA 3.61) with multiple national developer competition championships and deep cloud expertise.",
+          bio: "Muchammad Fahrizal oversees technical execution, system architecture, cloud infrastructure, and AI/ML initiatives at Superworks. A Computer Science graduate from Institut Teknologi Nasional Bandung with multiple national developer competition championships and deep cloud expertise.",
           focus: [
             "Cloud Infrastructure (GCP / AWS)",
             "High-concurrency Backend & APIs",
