@@ -83,6 +83,7 @@ export type Dict = {
     copyPhone: string;
     copiedPhoneToast: string;
     sendDirect: string;
+    contactPerson: string;
     whatsappCTA: string;
     sla: string;
     topicsLabel: string;
@@ -275,6 +276,7 @@ export const content: Record<Lang, Dict> = {
       copyPhone: "Salin No. WhatsApp",
       copiedPhoneToast: "Nomor WhatsApp berhasil disalin!",
       sendDirect: "Kirim Email Sekarang",
+      contactPerson: "Contact Person (08111235404)",
       whatsappCTA: "Chat WhatsApp",
       sla: "Waktu respon rata-rata < 24 jam",
       topicsLabel: "Topik Diskusi:",
@@ -470,6 +472,7 @@ export const content: Record<Lang, Dict> = {
       copyPhone: "Copy WhatsApp No.",
       copiedPhoneToast: "WhatsApp number copied to clipboard!",
       sendDirect: "Send Email Directly",
+      contactPerson: "Contact Person (+62 811-1235-404)",
       whatsappCTA: "Chat on WhatsApp",
       sla: "Average response time < 24 hours",
       topicsLabel: "Inquiry Focus:",

@@ -51,9 +51,9 @@ export default function Contact() {
   const whatsappHref = `${company.whatsappUrl}?text=${encodeURIComponent(whatsappMessage)}`;
 
   return (
-    <section id="contact" className="relative py-20 sm:py-28 border-t border-white/[0.06]">
+    <section id="contact" className="relative py-20 sm:py-28 border-t border-white/[0.06] scroll-mt-24">
       <div className="section-shell">
-        <div className="relative overflow-hidden rounded-3xl border border-white/[0.1] bg-gradient-to-b from-[#0e111d] to-[#070910] p-8 sm:p-14 backdrop-blur-2xl shadow-[0_25px_60px_-15px_rgba(0,0,0,0.8),inset_0_1px_0_0_rgba(255,255,255,0.1)]">
+        <div id="contact-box" className="relative overflow-hidden rounded-3xl border border-white/[0.1] bg-gradient-to-b from-[#0e111d] to-[#070910] p-8 sm:p-14 backdrop-blur-2xl shadow-[0_25px_60px_-15px_rgba(0,0,0,0.8),inset_0_1px_0_0_rgba(255,255,255,0.1)]">
           {/* Subtle ambient gradient inside card */}
           <div className="absolute top-0 right-0 w-96 h-96 bg-indigo-500/10 rounded-full blur-3xl pointer-events-none" />
           <div className="absolute bottom-0 left-0 w-96 h-96 bg-teal-500/10 rounded-full blur-3xl pointer-events-none" />
@@ -101,9 +101,19 @@ export default function Contact() {
               </div>
             </div>
 
-            {/* Primary Action Buttons: WhatsApp & Email */}
+            {/* Primary Action Buttons: hello@superworks.id & Contact Person */}
             <div className="flex flex-wrap items-center gap-3.5 pt-2">
-              {/* WhatsApp Direct Action */}
+              {/* hello@superworks.id Button */}
+              <a
+                href={mailtoHref}
+                className="group inline-flex items-center gap-2.5 rounded-xl bg-gradient-to-r from-indigo-500 via-indigo-600 to-indigo-700 px-6 py-3.5 text-sm font-semibold text-white shadow-[0_4px_20px_rgba(99,102,241,0.35)] transition-all duration-200 hover:shadow-[0_6px_28px_rgba(99,102,241,0.5)] hover:brightness-110 active:scale-[0.98]"
+              >
+                <Mail size={16} />
+                <span>{company.email}</span>
+                <ArrowUpRight size={16} className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+              </a>
+
+              {/* Contact Person (WhatsApp) Button */}
               <a
                 href={whatsappHref}
                 target="_blank"
@@ -111,42 +121,13 @@ export default function Contact() {
                 className="group inline-flex items-center gap-2.5 rounded-xl bg-gradient-to-r from-emerald-600 via-teal-600 to-emerald-600 px-6 py-3.5 text-sm font-semibold text-white shadow-[0_4px_20px_rgba(16,185,129,0.3)] transition-all duration-200 hover:shadow-[0_6px_28px_rgba(16,185,129,0.45)] hover:brightness-110 active:scale-[0.98]"
               >
                 <WhatsAppIcon size={18} />
-                <span>{t.whatsappCTA} ({company.phoneDisplay})</span>
+                <span>{t.contactPerson}</span>
                 <ArrowUpRight size={15} className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-              </a>
-
-              {/* Direct Email Action */}
-              <a
-                href={mailtoHref}
-                className="group inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-indigo-500 via-indigo-600 to-indigo-700 px-6 py-3.5 text-sm font-semibold text-white shadow-[0_4px_20px_rgba(99,102,241,0.35)] transition-all duration-200 hover:shadow-[0_6px_28px_rgba(99,102,241,0.5)] hover:brightness-110 active:scale-[0.98]"
-              >
-                <Mail size={16} />
-                <span>{company.email}</span>
-                <ArrowUpRight size={16} className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
               </a>
             </div>
 
             {/* Secondary Copy Actions */}
             <div className="flex flex-wrap items-center gap-2.5">
-              {/* Copy WhatsApp / Phone */}
-              <button
-                type="button"
-                onClick={handleCopyPhone}
-                className="inline-flex items-center gap-2 rounded-xl border border-white/[0.1] bg-white/[0.03] px-4 py-2.5 text-xs font-medium text-slate-300 backdrop-blur-md transition-all duration-200 hover:bg-white/[0.08] hover:border-white/[0.2] hover:text-white active:scale-[0.98]"
-              >
-                {copiedPhone ? (
-                  <>
-                    <Check size={14} className="text-teal-400" />
-                    <span className="text-teal-300">{t.copiedPhoneToast}</span>
-                  </>
-                ) : (
-                  <>
-                    <Copy size={14} className="text-slate-400" />
-                    <span>{t.copyPhone}: {company.phone}</span>
-                  </>
-                )}
-              </button>
-
               {/* Copy Email */}
               <button
                 type="button"
@@ -162,6 +143,25 @@ export default function Contact() {
                   <>
                     <Copy size={14} className="text-slate-400" />
                     <span>{t.copyEmail}</span>
+                  </>
+                )}
+              </button>
+
+              {/* Copy WhatsApp / Phone */}
+              <button
+                type="button"
+                onClick={handleCopyPhone}
+                className="inline-flex items-center gap-2 rounded-xl border border-white/[0.1] bg-white/[0.03] px-4 py-2.5 text-xs font-medium text-slate-300 backdrop-blur-md transition-all duration-200 hover:bg-white/[0.08] hover:border-white/[0.2] hover:text-white active:scale-[0.98]"
+              >
+                {copiedPhone ? (
+                  <>
+                    <Check size={14} className="text-teal-400" />
+                    <span className="text-teal-300">{t.copiedPhoneToast}</span>
+                  </>
+                ) : (
+                  <>
+                    <Copy size={14} className="text-slate-400" />
+                    <span>{t.copyPhone}: {company.phone}</span>
                   </>
                 )}
               </button>
