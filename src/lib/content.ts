@@ -80,7 +80,10 @@ export type Dict = {
     desc: string;
     copyEmail: string;
     copiedToast: string;
+    copyPhone: string;
+    copiedPhoneToast: string;
     sendDirect: string;
+    whatsappCTA: string;
     sla: string;
     topicsLabel: string;
     topics: string[];
@@ -266,10 +269,13 @@ export const content: Record<Lang, Dict> = {
     contact: {
       badge: "Mulai Kolaborasi",
       title: "Mari diskusikan visi produk digital Anda bersama kami.",
-      desc: "Kirim pesan atau hubungi kami langsung. Kami akan merespons dalam waktu singkat untuk menjadwalkan sesi konsultasi mendalam.",
+      desc: "Kirim pesan atau hubungi kami langsung via WhatsApp atau email. Kami akan merespons dalam waktu singkat untuk menjadwalkan sesi konsultasi mendalam.",
       copyEmail: "Salin Alamat Email",
       copiedToast: "Alamat email berhasil disalin!",
+      copyPhone: "Salin No. WhatsApp",
+      copiedPhoneToast: "Nomor WhatsApp berhasil disalin!",
       sendDirect: "Kirim Email Sekarang",
+      whatsappCTA: "Chat WhatsApp",
       sla: "Waktu respon rata-rata < 24 jam",
       topicsLabel: "Topik Diskusi:",
       topics: [
@@ -458,10 +464,13 @@ export const content: Record<Lang, Dict> = {
     contact: {
       badge: "Initiate Partnership",
       title: "Let's discuss how we can engineer your digital vision.",
-      desc: "Send us a note with your product goals. We'll connect promptly to schedule a technical discovery session.",
+      desc: "Send us a note or chat directly with us via WhatsApp or email. We'll connect promptly to schedule a technical discovery session.",
       copyEmail: "Copy Email Address",
       copiedToast: "Email address copied to clipboard!",
+      copyPhone: "Copy WhatsApp No.",
+      copiedPhoneToast: "WhatsApp number copied to clipboard!",
       sendDirect: "Send Email Directly",
+      whatsappCTA: "Chat on WhatsApp",
       sla: "Average response time < 24 hours",
       topicsLabel: "Inquiry Focus:",
       topics: [

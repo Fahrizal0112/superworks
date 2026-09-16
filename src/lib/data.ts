@@ -2,6 +2,9 @@ export const company = {
   name: "Superworks",
   tagline: "Software Development & Applied AI Studio",
   email: "hello@superworks.id",
+  phone: "08111235404",
+  phoneDisplay: "+62 811-1235-404",
+  whatsappUrl: "https://wa.me/628111235404",
   location: "Indonesia (Available Worldwide)",
   availability: "Available for Q2/Q3 2025 Partnerships",
 };

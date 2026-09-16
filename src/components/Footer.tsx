@@ -30,6 +30,24 @@ export default function Footer() {
             <p className="text-xs text-slate-400 max-w-sm">
               {company.tagline} · {company.location}
             </p>
+            <div className="flex flex-wrap items-center gap-2.5 text-xs text-slate-400">
+              <a
+                href={company.whatsappUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 text-teal-400/90 transition-colors hover:text-teal-300 font-mono"
+              >
+                <span className="h-1.5 w-1.5 rounded-full bg-teal-400" />
+                <span>WhatsApp: {company.phoneDisplay}</span>
+              </a>
+              <span className="text-slate-600">•</span>
+              <a
+                href={`mailto:${company.email}`}
+                className="text-slate-400 transition-colors hover:text-white font-mono"
+              >
+                {company.email}
+              </a>
+            </div>
           </div>
 
           {/* System Operational Status Badge */}
